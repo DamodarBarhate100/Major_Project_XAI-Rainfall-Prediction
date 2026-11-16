@@ -56,7 +56,7 @@ export default function RiskMap({ metadata, prediction, height = 340, zoom = 7 }
         attributionControl={false}
       >
         {/* Light CartoDB tiles */}
-        <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         <RecenterView center={center} zoom={zoom} />
 

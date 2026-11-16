@@ -24,11 +24,11 @@ export default function PageHeader({ page, sub, right }) {
               fontSize: '11px',
               color: 'var(--text-dim)',
               fontWeight: 600,
-              letterSpacing: '0.08em',
+              letterSpacing: '0.06em',
               textTransform: 'uppercase',
             }}
           >
-            BHOOMIDRISHTI
+            MAJOR PROJECT - GROUP - 5
           </span>
           <span style={{ color: 'var(--text-dim)', fontSize: '12px' }}>/</span>
           <span

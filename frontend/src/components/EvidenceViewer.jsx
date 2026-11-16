@@ -17,17 +17,15 @@ const MODES = [
   {
     id:    'original',
     label: 'Raw Satellite',
-    // Not yet supplied by the backend — will render "No image available"
-    getUrl: () => null,
-    desc:  'Original INSAT-3DR observation as ingested by the 3D-CNN — no post-processing.',
-    note:  null,
+    getUrl: (gradcam) => gradcam?.original_url ?? gradcam?.image_url ?? '/mock/satellite.png',
+    desc:  'Original INSAT-3DR thermal infrared observation as ingested by the 3D-CNN.',
+    note:  'Cold cloud tops appear bright; warmer ground features appear dark.',
     showScale: false,
   },
   {
     id:    'heatmap',
     label: 'Grad-CAM',
-    // Real backend provides image_url on the gradcam object
-    getUrl: (gradcam) => gradcam?.image_url ?? null,
+    getUrl: (gradcam) => gradcam?.image_url ?? '/mock/gradcam_heatmap.png',
     desc:  'Class activation map (Grad-CAM). Spatial regions weighted by gradient contribution to final classification.',
     note:  'Warmer colour = stronger model attention.',
     showScale: true,
@@ -35,8 +33,7 @@ const MODES = [
   {
     id:    'overlay',
     label: 'Overlay',
-    // Not yet supplied by the backend — will render "No image available"
-    getUrl: () => null,
+    getUrl: (gradcam) => gradcam?.overlay_url ?? gradcam?.image_url ?? '/mock/gradcam_overlay.png',
     desc:  'Grad-CAM attention superimposed on original satellite observation (α = 0.55).',
     note:  'Warmer colour = stronger model attention.',
     showScale: true,

@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 /* ════════════════════════════════════════════════════════════
-   BHOOMIDRISHTI — Scientific Meteorological Intelligence Console
+   MAJOR PROJECT - GROUP - 5
+   Development of an Explainable AI (XAI) Based Model for Prediction of Heavy/High Impact Rain Events Using Satellite Data
    Light theme. Clean, institutional, precise.
    Typography-led hierarchy. Color communicates meaning only.
    No glows. No gradients. No shadows. No glassmorphism.
@@ -19,7 +20,7 @@
     --bg-input:     #F8FAFC;
 
     /* ── Layout ────────────────────────────────────────────────*/
-    --sidebar-w:    220px;
+    --sidebar-w:    245px;
     --content-max:  1200px;
 
     /* ── Borders ───────────────────────────────────────────────

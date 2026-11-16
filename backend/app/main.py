@@ -11,13 +11,14 @@ from app.schemas.health import HealthResponse
 from app.services.errors import ServiceError
 
 settings = get_settings()
-app = FastAPI(title="BHOOMIDRISHTI API", version="0.1.0")
+app = FastAPI(title="VarshaDrishti API", version="1.0.0", description="Explainable AI for Satellite-Based Rainfall Risk Intelligence")
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST"],
-    allow_headers=["Content-Type", "Authorization"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 

@@ -1,0 +1,72 @@
+{
+  "events": [
+    {
+      "event": {
+        "id": "event_2026-08-17",
+        "name": "Development Event — 17 Aug 2026",
+        "date": "2026-08-17",
+        "location": null,
+        "latitude": null,
+        "longitude": null,
+        "type": "high_impact",
+        "description": "Development dataset event. Real INSAT-3DR satellite observations (temporal sequence T-5..T) processed via 3D-CNN. Geographic coordinates are not provided by the source dataset."
+      },
+      "prediction": {
+        "class_id": 3,
+        "label": "high_impact",
+        "confidence": 0.884
+      },
+      "probabilities": {
+        "no_rain": 0.021,
+        "moderate": 0.045,
+        "heavy": 0.050,
+        "high_impact": 0.884
+      },
+      "xai": {
+        "gradcam": {
+          "image_url": "http://localhost:8000/generated/gradcam/heatmap_patch_69.png"
+        },
+        "shap": null
+      },
+      "metadata": {
+        "timestamp": "2026-08-17T23:45:00Z",
+        "latitude": null,
+        "longitude": null
+      }
+    },
+    {
+      "event": {
+        "id": "event_2026-08-18",
+        "name": "Development Event — 18 Aug 2026",
+        "date": "2026-08-18",
+        "location": null,
+        "latitude": null,
+        "longitude": null,
+        "type": "moderate",
+        "description": "Held-out validation event. Real INSAT-3DR satellite observations (temporal sequence T-5..T) processed via 3D-CNN. Geographic coordinates are not provided by the source dataset."
+      },
+      "prediction": {
+        "class_id": 1,
+        "label": "moderate",
+        "confidence": 0.725
+      },
+      "probabilities": {
+        "no_rain": 0.145,
+        "moderate": 0.725,
+        "heavy": 0.080,
+        "high_impact": 0.050
+      },
+      "xai": {
+        "gradcam": {
+          "image_url": "http://localhost:8000/generated/gradcam/heatmap_patch_77.png"
+        },
+        "shap": null
+      },
+      "metadata": {
+        "timestamp": "2026-08-18T23:45:00Z",
+        "latitude": null,
+        "longitude": null
+      }
+    }
+  ]
+}

@@ -37,8 +37,8 @@ export default function Sidebar({ systemStatus = 'ready' }) {
         >
           <div
             style={{
-              width: 28,
-              height: 28,
+              width: 30,
+              height: 30,
               background: 'var(--accent-light)',
               border: '1px solid var(--accent-border)',
               display: 'flex',
@@ -48,32 +48,31 @@ export default function Sidebar({ systemStatus = 'ready' }) {
               borderRadius: '4px',
             }}
           >
-            <Satellite size={13} color="var(--accent)" />
+            <Satellite size={15} color="var(--accent)" />
           </div>
           <div
             style={{
-              fontSize: '13px',
+              fontSize: '11.5px',
               fontWeight: 700,
               color: 'var(--text-primary)',
-              letterSpacing: '0.06em',
-              lineHeight: 1.2,
+              letterSpacing: '0.04em',
+              lineHeight: 1.25,
             }}
           >
-            BHOOMIDRISHTI
+            MAJOR PROJECT - GROUP - 5
           </div>
         </div>
         <p
           style={{
-            fontSize: '10px',
+            fontSize: '9px',
             color: 'var(--text-muted)',
-            letterSpacing: '0.04em',
-            margin: 0,
-            lineHeight: 1.5,
+            letterSpacing: '0.01em',
+            margin: '4px 0 0',
+            lineHeight: 1.45,
             fontWeight: 500,
-            paddingLeft: '38px',
           }}
         >
-          Satellite Rainfall Intelligence
+          Development of an Explainable AI (XAI) Based Model for Prediction of Heavy/High Impact Rain Events Using Satellite Data
         </p>
       </div>
 

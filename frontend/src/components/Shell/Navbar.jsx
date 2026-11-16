@@ -33,16 +33,16 @@ export default function Navbar({ systemStatus }) {
         <div className="flex items-center gap-4">
           <div className="leading-none">
             <span
-              className="block font-semibold tracking-widest"
-              style={{ fontSize: '13px', color: 'var(--text-primary)', letterSpacing: '0.12em' }}
+              className="block font-semibold tracking-wide"
+              style={{ fontSize: '12px', color: 'var(--text-primary)', letterSpacing: '0.04em' }}
             >
-              BHOOMIDRISHTI
+              MAJOR PROJECT - GROUP - 5
             </span>
             <span
               className="block"
-              style={{ fontSize: '9px', color: 'var(--text-muted)', letterSpacing: '0.14em', marginTop: '1px' }}
+              style={{ fontSize: '8.5px', color: 'var(--text-muted)', letterSpacing: '0.02em', marginTop: '2px', maxWidth: 420 }}
             >
-              SATELLITE RAINFALL INTELLIGENCE
+              Development of an Explainable AI (XAI) Based Model for Prediction of Heavy/High Impact Rain Events Using Satellite Data
             </span>
           </div>
 

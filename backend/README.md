@@ -1,49 +1,45 @@
-# BHOOMIDRISHTI backend
+# VarshaDrishti Backend
 
-FastAPI integration layer for the BHOOMIDRISHTI rainfall-risk frontend and the future ML/XAI pipeline. It deliberately contains no model, predictions, metrics, historical events, or fallback data.
+FastAPI integration layer for the VarshaDrishti Explainable Satellite Rainfall Risk Intelligence frontend and ML/XAI pipeline.
+
+## Features
+
+- **Live City Predictions**: `GET /api/latest?lat=...&lon=...` or `GET /api/latest?city=...` for any city in India
+- **3D-CNN Inference**: Multi-temporal temporal sequence modeling across INSAT-3DR channels (MIR, TIR1, TIR2)
+- **Grad-CAM Explainability**: Live spatial class activation heatmap generation served via `/generated/gradcam/...`
+- **Atmospheric XAI (SHAP)**: Cloud top temperature, moisture gradients, precipitable water, brightness temperature difference, and stability indices
+- **Historical Event Replay**: `GET /api/historical` and `GET /api/historical/{event_id}`
+- **Model Evaluation Metrics**: `GET /api/metrics`
 
 ## Run
 
-Use Python 3.11+.
-
 ```powershell
 cd backend
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-Copy-Item .env.example .env
-uvicorn app.main:app --reload
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
-The API docs are available at `http://localhost:8000/docs`; health is `GET /health`.
+The API docs are available at `http://localhost:8000/docs`; health check at `GET /health`.
 
 ## Configuration
 
-All settings use the `BHOOMIDRISHTI_` prefix. Set `CORS_ORIGINS` to a JSON array; the default permits Vite at `http://localhost:5173`.
-
-`PREDICTOR_CLASS` must be `package.module:Class`. `METRICS_PATH` and `HISTORICAL_EVENTS_PATH` must point to real JSON artifacts. If any source is missing, the API returns an explicit 503 or 404 instead of invented data.
-
-## Person 1 model interface
-
-Person 1 should implement a class with `predict(observation: Mapping | None) -> Mapping`. Configure that class through `BHOOMIDRISHTI_PREDICTOR_CLASS`. Its returned mapping must contain `prediction`, `probabilities`, and `metadata`; `xai` is optional. `prediction` uses class IDs 0–3 mapped to `no_rain`, `moderate`, `heavy`, `high_impact`. Probability keys use those labels and must sum to approximately 1. `metadata.timestamp` must be timezone-aware ISO-8601, and include latitude/longitude.
-
-The adapter accepts either a keyed probability mapping or a four-element probability sequence in the specified class order. Put integration-specific imports, checkpoint loading, tensor conversion, and raw-output translation in `app/adapters/model_adapter.py`; routes and schemas remain unchanged.
-
-## Artifacts
-
-`METRICS_PATH` contains one object matching the `/api/metrics` schema. `HISTORICAL_EVENTS_PATH` contains either a list, or `{ "events": [...] }`; each entry for event detail contains `event` plus the normal prediction response fields. The list endpoint derives its event summaries from those entries. Grad-CAM uses `xai.gradcam.image_url`; SHAP uses `xai.shap.features` with `name`, `value`, and `contribution`.
+Settings are configured via `.env` or environment variables:
+- `BHOOMIDRISHTI_CORS_ORIGINS`: JSON array of allowed origins (e.g. `["http://localhost:5173"]`)
+- `BHOOMIDRISHTI_PREDICTOR_CLASS`: Predictor import path (`app.adapters.ml_predictor:Predictor`)
+- `BHOOMIDRISHTI_METRICS_PATH`: Path to metrics JSON artifact
+- `BHOOMIDRISHTI_HISTORICAL_EVENTS_PATH`: Path to historical events JSON artifact
 
 ## Endpoints
 
-- `POST /api/predict` — optional `{ "observation": { ... } }` sent to the configured model.
-- `GET /api/latest` — configured model’s current/latest observation.
-- `GET /api/metrics` — validated real metrics artifact.
-- `GET /api/historical` and `GET /api/historical/{event_id}` — validated real historical artifact.
-- `GET /health` — process health only; it does not claim the model/artifacts are available.
+- `GET /health` — Service health
+- `GET /api/latest` — Latest prediction; accepts optional `city`, `lat`, `lon` query params
+- `POST /api/predict` — Prediction request with observation dictionary
+- `GET /api/satellite/latest` — Latest satellite image metadata for city or location
+- `GET /api/metrics` — Validated evaluation metrics artifact
+- `GET /api/historical` — Available historical replay events
+- `GET /api/historical/{event_id}` — Full prediction and Grad-CAM for historical event
 
 ## Tests
 
 ```powershell
-cd backend
-pytest
+$env:PYTHONPATH="backend;varshadrishti-ml"; python -m pytest backend/tests
 ```
