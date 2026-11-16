@@ -157,7 +157,7 @@ export default function Dashboard() {
           }}
         >
           <span className="label" style={{ letterSpacing: '0.14em' }}>
-            VARSHADRISHTI / LIVE SATELLITE INTELLIGENCE
+            MAJOR PROJECT - GROUP - 5 / LIVE SATELLITE INTELLIGENCE
           </span>
         </div>
         <div style={{ padding: '40px 28px' }}>
